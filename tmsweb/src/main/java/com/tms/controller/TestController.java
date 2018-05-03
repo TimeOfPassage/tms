@@ -1,6 +1,7 @@
 package com.tms.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.tms.utils.HttpUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -23,16 +24,7 @@ public class TestController {
 
         CloseableHttpClient httpClient = HttpClients.createDefault();
         HttpGet httpGet = new HttpGet("http://127.0.0.1:8080/tmsapi/api/category/list");
-        httpGet.setHeader("Content-Type","application/json;charset=UTF-8");
-        JSONObject jObj = null;
-        try {
-            CloseableHttpResponse response = httpClient.execute(httpGet);
-            HttpEntity entity = response.getEntity();
-            String respTxt = EntityUtils.toString(entity, "UTF-8");
-            jObj = JSONObject.parseObject(respTxt);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        JSONObject jObj = JSONObject.parseObject(HttpUtils.doHttp(null,"http://127.0.0.1:8080/tmsapi/api/category/list"));;
         mv.setViewName("test");
         mv.addObject("message", "Hello World!!!!!");
         mv.addObject("obj",jObj);
