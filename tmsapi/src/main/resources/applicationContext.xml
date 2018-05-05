@@ -34,25 +34,12 @@
         </property>
         <!-- 指定MyBatis全局配置文件的位置 -->
         <property name="configLocation" value="classpath:mybatis-config.xml"></property>
-        <!-- other configuration -->
-        <property name="plugins">
-            <array>
-                <bean class="com.github.pagehelper.PageInterceptor">
-                    <!-- 这里的几个配置主要演示如何使用，如果不理解，一定要去掉下面的配置 -->
-                    <property name="properties">
-                        <value>
-                            helperDialect=mysql
-                        </value>
-                    </property>
-                </bean>
-            </array>
-        </property>
     </bean>
 
     <!-- 扫描MyBatis的mapper接口 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <!--扫描所有DAO接口的实现，加入到IOC容器中 -->
-        <property name="basePackage" value="com.tms.dao.system"/>
+        <property name="basePackage" value="com.tms.dao"/>
     </bean>
 
     <!-- 配置事务管理器 -->
@@ -71,10 +58,10 @@
         </tx:attributes>
     </tx:advice>
 
-    <!-- 开启基于注解的事务  -->
+    <!-- 开启基于注解的事务  织入 -->
     <aop:config>
         <!-- 切入点表达式 -->
-        <aop:pointcut expression="execution(* com.tms.service.impl.*.*(..))" id="txPoint"/>
+        <aop:pointcut expression="execution(* com.tms.service.*.impl.*.*(..))" id="txPoint"/>
         <!-- 配置事务增强 -->
         <aop:advisor advice-ref="txAdvice" pointcut-ref="txPoint"/>
     </aop:config>

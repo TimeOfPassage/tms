@@ -31,8 +31,7 @@
         <appender-ref ref="STDOUT" />
     </logger>
     -->
-    <logger name="ws.log.logback.LogbackTest" additivity="false">
-        <level value="INFO" />
+    <logger name="ws.log.logback.LogbackTest" additivity="false" level="INFO">
         <appender-ref ref="STDOUT" />
     </logger>
     <!-- 相当于logger元素，只是name值已经确定为root了 -->

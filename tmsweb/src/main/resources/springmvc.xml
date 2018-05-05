@@ -11,10 +11,9 @@
     <context:component-scan base-package="com.tms"></context:component-scan>
 
     <!-- 告知spring，启用springmvc的注解驱动 -->
-    <mvc:annotation-driven />
-    <!--<mvc:annotation-driven>
+    <mvc:annotation-driven>
         <mvc:message-converters register-defaults="true">
-            &lt;!&ndash; 避免IE执行AJAX时,返回JSON出现下载文件 &ndash;&gt;
+            <!-- 避免IE执行AJAX时,返回JSON出现下载文件 -->
             <bean id="fastJsonHttpMessageConverter" class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
                 <property name="supportedMediaTypes">
                     <list>
@@ -23,14 +22,14 @@
                 </property>
             </bean>
         </mvc:message-converters>
-    </mvc:annotation-driven>-->
+    </mvc:annotation-driven>
 
     <!--springMVC+thymeleaf的跳转页面配置-->
     <bean id="templateResolver" class="org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver">
         <property name="prefix" value="/WEB-INF/views/" />
         <property name="suffix" value=".html" />
         <property name="templateMode" value="HTML" />
-        <property name="cacheable" value="false" />
+        <property name="characterEncoding" value="UTF-8"/>
     </bean>
 
     <bean id="templateEngine" class="org.thymeleaf.spring4.SpringTemplateEngine">
@@ -39,5 +38,6 @@
 
     <bean class="org.thymeleaf.spring4.view.ThymeleafViewResolver">
         <property name="templateEngine" ref="templateEngine" />
+        <property name="characterEncoding" value="UTF-8"/>
     </bean>
 </beans>
