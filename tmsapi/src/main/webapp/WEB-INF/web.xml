@@ -29,6 +29,11 @@
         <dispatcher>FORWARD</dispatcher>
     </filter-mapping>
 
+    <context-param>
+        <param-name>charset</param-name>
+        <param-value>UTF-8</param-value>
+    </context-param>
+
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
